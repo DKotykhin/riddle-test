@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
+
 import StyledButton from './StyledButton';
 
 interface AnswerFormProps {
-	answer: string;
+	answer?: string;
 	attemptNumber: number;
-	attemptNumberFn: () => void;
+	attemptNumberFn: (arg: boolean) => void;
 }
 
 export const AnswerForm = ({ answer, attemptNumber, attemptNumberFn }: AnswerFormProps) => {
 	const [inputValue, setInputValue] = useState('');
 
 	const handleSubmit = () => {
-		const isCorrect = inputValue.toLowerCase() === answer.toLowerCase();
-		attemptNumberFn();
+		if (inputValue.trim() === '') {
+			Alert.alert('Invalid Answer', 'Please enter a valid answer');
+			return;
+		}
+		const isCorrect = inputValue.toLowerCase() === answer?.toLowerCase();
+		attemptNumberFn(isCorrect);
 		setInputValue('');
 		if (!isCorrect) {
 			Alert.alert('Incorrect Answer', 'Try again');
@@ -29,6 +34,7 @@ export const AnswerForm = ({ answer, attemptNumber, attemptNumberFn }: AnswerFor
 				value={inputValue}
 				onChangeText={setInputValue}
 				placeholder="Your answer"
+				placeholderTextColor={'#5F6F89'}
 			/>
 			<StyledButton
 				title="Submit"
@@ -42,17 +48,17 @@ export const AnswerForm = ({ answer, attemptNumber, attemptNumberFn }: AnswerFor
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		marginTop: 20,
 		justifyContent: 'center',
 		alignItems: 'center',
-		padding: 20,
+		padding: 10,
 	},
 	input: {
-		width: 300,
+		width: 310,
 		height: 72,
 		borderColor: '#fff',
 		borderWidth: 2,
-		padding: 10,
+		padding: 20,
 		marginBottom: 20,
 		borderRadius: 24,
 	},

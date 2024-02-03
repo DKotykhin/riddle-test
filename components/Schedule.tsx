@@ -4,15 +4,15 @@ import { View, Text, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 const options = ['Weekly', '3 days', '1 day', 'Special'];
 
 interface ScheduleProps {
-  setNewAttemptNumber: (value: number) => void;
+  changeRiddle: () => void;
 }
 
-export const Schedule = ({ setNewAttemptNumber }: ScheduleProps) => {
+export const Schedule = ({ changeRiddle }: ScheduleProps) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
   const handlePress = (option: string) => {
     setSelectedOption(option);
-    setNewAttemptNumber(5);
+    changeRiddle();
   };
 
   return (
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     width: 72,
     height: 42,
     borderRadius: 16,
-    marginHorizontal: 2,
+    marginHorizontal: 3,
     backgroundColor: '#FFF',
 
   },
@@ -79,9 +79,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#3D444F',
     fontFamily: 'poppins-600',
+    opacity: 0.5,
   },
   selectedText: {
     color: '#7ACA40',
+    opacity: 1,
   },
   title: {
     fontSize: 24,

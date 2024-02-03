@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 interface StyledButtonProps {
   onPress: () => void;
@@ -8,9 +9,16 @@ interface StyledButtonProps {
 }
 
 const StyledButton = ({ onPress, title, disabled }: StyledButtonProps) => (
-  <TouchableOpacity style={[styles.button, disabled && styles.button_disabled]} onPress={onPress} disabled={disabled}>
-    <Text style={styles.text}>{title}</Text>
-  </TouchableOpacity>
+  <LinearGradient
+    colors={['#8FD45B', '#78C83D']}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 1 }}
+    style={styles.gradient}
+  >
+    <TouchableOpacity style={[styles.button, disabled && styles.button_disabled]} onPress={onPress} disabled={disabled}>
+      <Text style={styles.text}>{title}</Text>
+    </TouchableOpacity>
+  </LinearGradient>
 );
 
 const styles = StyleSheet.create({
@@ -19,24 +27,26 @@ const styles = StyleSheet.create({
     height: 72,
     borderColor: '#fff',
     borderRadius: 24,
-    backgroundColor: "#8FD45B",
     justifyContent: "center",
     alignItems: "center",
-    elevation: 8,
-    shadowColor: "rgba(0,0,0,0.4)",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
   },
   button_disabled: {
     backgroundColor: "#D3D3D3",
   },
   text: {
-    fontSize: 18,
+    fontSize: 16,
     color: "#fff",
-    fontWeight: "bold",
+    fontFamily: "poppins-700",
     alignSelf: "center",
     textTransform: "uppercase"
+  },
+  gradient: {
+    padding: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 24,
+    minWidth: 20,
+    minHeight: 20,
   },
 });
 

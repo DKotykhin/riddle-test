@@ -25,10 +25,17 @@ export const Header = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.star_box}>
-        <SvgStar />
-        <Text style={styles.star_text}>{stars}</Text>
-      </View>
+      <LinearGradient
+        colors={['#F8B469', '#FF708A']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.gradient}
+      >
+        <View style={styles.star_box}>
+          <SvgStar />
+          <Text style={styles.star_text}>{stars}</Text>
+        </View>
+      </LinearGradient>
       <View style={styles.prompt_wrapper}>
         <View style={styles.prompt_box}>
           <SvgBell />
@@ -47,7 +54,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: 300,
+    width: 310,
     marginVertical: 20,
   },
   star_box: {
@@ -58,7 +65,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     width: 71,
     height: 40,
-    backgroundColor: '#F8B469',
   },
   star_text: {
     color: '#fff',

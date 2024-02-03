@@ -7,7 +7,6 @@ import { LeaderBoard } from '../screens/LeaderBoard';
 import { Settings } from '../screens/Settings';
 
 import { SvgHome, SvgLeader, SvgSettings } from '../constants/svg';
-import { color } from '../constants/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,8 +23,8 @@ export const Navigation = () => {
             return <SvgSettings />;
           }
         },
-        tabBarActiveTintColor: color.black,
-        tabBarInactiveTintColor: color.grey,
+        tabBarActiveTintColor: '#3D444F',
+        tabBarInactiveTintColor: '#5F6F89',
         tabBarStyle: {
           backgroundColor: '#E7EBFF',
           height: 100,

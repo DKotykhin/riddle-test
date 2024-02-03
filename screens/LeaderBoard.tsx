@@ -5,22 +5,32 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Header } from '../components/Header';
 import { Schedule } from '../components/Schedule';
 import { AnswerForm } from '../components/AnswerForm';
+import { riddleApi } from '../api/riddleApi';
 
-const riddle = {
-  text: `I can add to several hundred. But can't subtract, multiply, or divide. Whatever I add to, it's always in front of you but never behind. And the number I add to, you can't really hide!`,
-  question: 'Who am I?',
-  answer: 'Age',
-};
+interface Riddle {
+  text: string;
+  question: string;
+  answer: string;
+}
+
+const totalAttempts = 5;
 
 export const LeaderBoard = () => {
 
   const [attemptNumber, setAttemptNumber] = useState<number>(5);
+  const [riddle, setRiddle] = useState<Riddle>(riddleApi);
 
-  const setNewAttemptNumber = (value: number) => {
-    setAttemptNumber(value);
+  const changeRiddle = () => {
+    setAttemptNumber(totalAttempts);
+    setRiddle(riddleApi);
   };
 
-  const attemptNumberFn = () => {
+  const attemptNumberFn = (isCorrect: boolean) => {
+    if (isCorrect) {
+      setAttemptNumber(totalAttempts);
+      setRiddle(riddleApi);
+      return;
+    }
     setAttemptNumber(attemptNumber - 1);
   };
 
@@ -34,16 +44,16 @@ export const LeaderBoard = () => {
       >
         <SafeAreaView style={styles.wrapper}>
           <Header />
-          <Schedule setNewAttemptNumber={setNewAttemptNumber} />
+          <Schedule changeRiddle={changeRiddle} />
           <View style={styles.text_wrapper}>
             <Text style={styles.text}>
-              {riddle.text}
+              {riddle?.text}
             </Text>
             <Text style={styles.subtitle}>
-              {riddle.question}
+              {riddle?.question}
             </Text>
           </View>
-          <AnswerForm answer={riddle.answer} attemptNumber={attemptNumber} attemptNumberFn={attemptNumberFn} />
+          <AnswerForm answer={riddle?.answer} attemptNumber={attemptNumber} attemptNumberFn={attemptNumberFn} />
         </SafeAreaView>
       </LinearGradient>
     </View>
@@ -63,7 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   text_wrapper: {
-    width: '76%',
+    width: 310,
     marginHorizontal: '12%',
   },
   text: {
@@ -76,7 +86,7 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 20,
     fontFamily: 'poppins-700',
-    marginVertical: 10,
+    marginTop: 10,
     color: '#5F6F89',
   }
 });
