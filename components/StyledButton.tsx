@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     textTransform: "uppercase"
   },
   gradient: {
-    padding: 2,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 24,

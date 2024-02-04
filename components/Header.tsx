@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   gradient: {
-    padding: 2,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
