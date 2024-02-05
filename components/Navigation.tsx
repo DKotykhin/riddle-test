@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { HomeScreen, LeaderBoardScreen, SettingsScreen } from '../screens/_index';
 
-import { SvgHome, SvgLeader, SvgSettings } from '../constants/svg';
+import { SvgHome, SvgHomeInactive, SvgLeader, SvgLeaderInactive, SvgSettings, SvgSettingsInactive } from '../constants/svg';
 import { SCREENS } from '../constants/screens';
 
 const Tab = createBottomTabNavigator();
@@ -13,13 +13,13 @@ export const Navigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={({ route }) => ({
-        tabBarIcon: () => {
+        tabBarIcon: ({ focused }) => {
           if (route.name === SCREENS.HOME) {
-            return <SvgHome />;
+            return focused ? <SvgHome /> : <SvgHomeInactive />;
           } else if (route.name === SCREENS.LEADER_BOARD) {
-            return <SvgLeader />;
+            return focused ? <SvgLeader /> : <SvgLeaderInactive />;
           } else if (route.name === SCREENS.SETTINGS) {
-            return <SvgSettings />;
+            return focused ? <SvgSettings /> : <SvgSettingsInactive />;
           }
         },
         tabBarActiveTintColor: '#3D444F',
@@ -27,6 +27,7 @@ export const Navigation = () => {
         tabBarStyle: {
           backgroundColor: '#E7EBFF',
           height: 90,
+          borderTopWidth: 0,
         },
       })}>
         <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
