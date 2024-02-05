@@ -15,7 +15,7 @@ interface Riddle {
 
 const totalAttempts = 5;
 
-export const LeaderBoard = () => {
+export const LeaderBoardScreen = () => {
 
   const [attemptNumber, setAttemptNumber] = useState<number>(5);
   const [riddle, setRiddle] = useState<Riddle>(riddleApi);

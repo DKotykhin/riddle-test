@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: 310,
-    marginVertical: 20,
+    marginVertical: 16,
   },
   star_box: {
     flexDirection: 'row',

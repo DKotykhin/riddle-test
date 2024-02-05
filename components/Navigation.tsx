@@ -2,11 +2,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 
-import { Home } from '../screens/Home';
-import { LeaderBoard } from '../screens/LeaderBoard';
-import { Settings } from '../screens/Settings';
+import { HomeScreen, LeaderBoardScreen, SettingsScreen } from '../screens/_index';
 
 import { SvgHome, SvgLeader, SvgSettings } from '../constants/svg';
+import { SCREENS } from '../constants/screens';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,11 +14,11 @@ export const Navigation = () => {
     <NavigationContainer>
       <Tab.Navigator screenOptions={({ route }) => ({
         tabBarIcon: () => {
-          if (route.name === 'Home') {
+          if (route.name === SCREENS.HOME) {
             return <SvgHome />;
-          } else if (route.name === 'LeaderBoard') {
+          } else if (route.name === SCREENS.LEADER_BOARD) {
             return <SvgLeader />;
-          } else if (route.name === 'Settings') {
+          } else if (route.name === SCREENS.SETTINGS) {
             return <SvgSettings />;
           }
         },
@@ -27,12 +26,12 @@ export const Navigation = () => {
         tabBarInactiveTintColor: '#5F6F89',
         tabBarStyle: {
           backgroundColor: '#E7EBFF',
-          height: 100,
+          height: 90,
         },
       })}>
-        <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-        <Tab.Screen name="LeaderBoard" component={LeaderBoard} options={{ headerShown: false }} />
-        <Tab.Screen name="Settings" component={Settings} />
+        <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="LeaderBoard" component={LeaderBoardScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
